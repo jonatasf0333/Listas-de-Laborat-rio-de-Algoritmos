@@ -1,0 +1,92 @@
+Lista Ponteiros
+
+Questão 1 
+
+x = 3
+y = 4
+p = 4
+
+Questão 2
+
+a) Erro.
+b) O compilador exibe tal mensagem pois p tem que receber o endereço de x e não o valor.
+c) Não.
+d) 
+#include <stdio.h>
+
+int main(void) {
+intx, *p;
+  x = 100;
+  p = &x;
+  printf("Ou valor de p = %d\não valor de *p = %d", p, *p);
+  retornar 0;
+}
+e) Sim.
+
+Questão 3
+ 
+Serão exibido os valores:
+a = 30
+b = 20
+c = 10
+
+Questão 4
+
+#include <stdio.h>
+#include <math.h>
+
+void calcular_hexagon(float l, float *área, float *perímetro){
+*área = 3 * pow (l,2) * sqrt (3)/2;
+* perímetro = 6 * l;
+}
+
+int main(void) {
+  área de flutuação, perímetro, lados;
+  printf("digite o lado: ");
+  scanf("%f", &lados);
+  calcular_hexágono(lados, &área, &perímetro);
+  printf("A area e %f: ", area);
+  printf ("O perímetro e %f: ", perímetro);
+  retornar 0;
+} 
+
+Questão 5
+
+#include <stdio.h>
+
+char situacao(float p1, float p2, float p3,
+int faltas, int aulas, float *media);
+
+int main(void) {
+  float n1, n2, n3, mídia;
+  int faltas, aulas;
+  printf("digite o valor da primeira nota: ");
+  scanf("%f", &n1);
+  printf("digite o valor da segunda nota: ");
+  scanf("%f", &n2);
+  printf("digite o valor da terceira nota: ");
+  scanf("%f", &n3);
+  printf("Digite o numero de faltas: ");
+  scanf ("%d", &faltas);
+  printf("Digite o numero de aulas: ");
+  scanf ("%d", &halls);
+  situacao (n1, n2, n3, faltas, aulas, &media);
+  printf("Sua media e %2.f: ", media);
+  retornar 0;
+}
+
+char situacao(float p1, float p2, float p3,
+int faltas, int aulas, float *media){
+*media = (p1 + p2 + p3)/3;
+  int porcentagem_falta;
+  porcentagem_falta = (100*faltas/aulas);
+  if (porcentagem_falta <= 25 && *media >= 6){
+    printf("Aprovado\n");
+  } 
+  else if (porcentagem_falta <=25 && *media < 6){
+    printf("Reprovado\n");
+  }
+  senão {
+    printf("Reprovado por faltas\n");
+  }
+}
