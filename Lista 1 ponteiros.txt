@@ -1,0 +1,93 @@
+Lista Ponteiros
+
+Questão 1 
+
+x = 3
+y = 4
+p = 4
+
+Questão 2
+
+a) Erro.
+b) O compilador exibe tal mensagem pois p tem que receber o endereço de x e não o valor.
+c) Não.
+d) 
+#include <stdio.h>
+
+int main(void) {
+int x, *p;//declaração de uma variavel inteira chamada x e de um ponteiro chamado p.
+  x = 100;// x recebe 100.
+  p = &x;//p recebe o endereço de x.
+  printf("O valor de p = %d\n valor de *p = %d", p, *p);//imprime o endereço de p, e o valor armazenado em p.
+  return 0;
+}
+e) Sim.
+
+Questão 3
+ 
+Serão exibido os valores:
+a = 30
+b = 20
+c = 10
+
+Questão 4
+
+#include <stdio.h>//biblioteca necessaria para a realização do algoritmo.
+#include <math.h>//biblioteca necessaria para o uso das funções pow e sqrt.
+
+void calcula_hexagono(float l, float *área, float *perímetro){//função que calcula area e perimetro de um hexagono.
+*área = 3 * pow (l,2) * sqrt (3)/2;//calculo da area.
+* perímetro = 6 * l;//calculo do perimetro.
+}
+
+int main(void) {//função principal.
+  float area, perimetro;//declaração de variaveis "area" e "perimetro" do tipo float.
+  int lados;//declaração dea variavel lados do tipo int.
+  printf("digite o lado: ");//pede ao usuario que ele digite o lado.
+  scanf("%i", &lados);//armazena o valor digitado e guarda na variavel "lados".
+  calcula_hexagono(lados, &area, &perimetro);//chamada da função que calcula a area e o perimetro.
+  printf("A area e %f: ", area);//imprime na tela o valor da area.
+  printf ("O perímetro e %f: ", perimetro);//imprime na tela o valor do perimetro.
+  return 0;
+} 
+
+Questão 5
+
+#include <stdio.h>//inclusão da biblioteca necessaria para a execução do programa.
+
+char situacao(float p1, float p2, float p3,
+int faltas, int aulas, float *media);//prototipo da função situação.
+
+int main(void) {//função principal.
+  float n1, n2, n3, media;// declaração de 4 variaveis do tipo float.
+  int faltas, aulas;// declaração de 2 variaveis do tipo int.
+  printf("digite o valor da primeira nota: ");//solicita o valor da primeira nota.
+  scanf("%f", &n1);//armazena em n1 a primeira nota.
+  printf("digite o valor da segunda nota: ");//solicita o valor da segunda nota.
+  scanf("%f", &n2);//armazena em n2 a segunda nota.
+  printf("digite o valor da terceira nota: ");//solicita o valor da terceira nota.
+  scanf("%f", &n3);//armazena em n3 a terceira nota.
+  printf("Digite o numero de faltas: ");//solicita o valor do numero de faltas.
+  scanf ("%d", &faltas);//armazena em faltas o numero de faltas.
+  printf("Digite o numero de aulas: ");// solicita o valor do numero de aulas.
+  scanf ("%d", &aulas);//armazena em aulas o numero de aulas.
+  situacao (n1, n2, n3, faltas, aulas, &media);// chamada da função situação.
+  printf("Sua media e %2.f: ", media);//imprime na tela o valor da média.
+  return 0;
+}
+
+char situacao(float p1, float p2, float p3,
+int faltas, int aulas, float *media){//criação da função situação que recebe como parametros 3 variaveis do tipo float, 2 variaveis do tipo int e um ponteiro chamado media do tipo float.
+*media = (p1 + p2 + p3)/3;// media recebe a soma das 3 notas dividido por 3.
+  int porcentagem_falta;// declaração de uma variavel do tipo int para calcular a porcentagem de faltas.
+  porcentagem_falta = (100*faltas/aulas);// calculo da porcentagem de faltas.
+  if (porcentagem_falta <= 25 && *media >= 6){//condição para que o aluno seja aprovado.
+    printf("Aprovado\n");// imprime na tela "Aprovado".
+  } 
+  else if (porcentagem_falta <=25 && *media < 6){//condição para que o aluno seja aprovado.
+    printf("Reprovado\n");//imprime na tela "Reprovado".
+  }
+  else {
+    printf("Reprovado por faltas\n");// se as outras 2 condições retornarem faltas, imprime-se "Reprovado por faltas".
+  }
+}
