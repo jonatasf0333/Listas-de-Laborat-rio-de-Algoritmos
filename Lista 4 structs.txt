@@ -1,0 +1,230 @@
+QUESTÃO 1.
+
+#include <stdio.h>//inclusão da biblioteca
+#include <stdlib.h>//inclusão da biblioteca
+
+typedef struct ingresso{//criação de uma estrutura de nome "struct ingresso".
+float preco;//declaração de variavel.
+char local [100];//declaração de variavel.
+char atracao [100];//declaração de variavel.
+}Ingresso;//renomeando a estrutura para "Ingresso".
+
+//QUESTÃO A.
+
+void preenche (Ingresso * i){//função que preenche os dados.
+  printf("Digite o preco: \n");//pede ao usuário que digite o preço.
+  scanf("%f", &i->preco);//armazena o valor digitado em "i->preco".
+  printf("Digite o local: \n");// pede ao usuário que digite o local.
+  scanf("%s", i->local);//armazena o local digitado em "i->local" 
+  printf("Digite a atracao: \n");//pede ao usuário que digite a atração.
+  scanf("%s", i->atracao);// armazena a atração digitada e "i->atração".   
+}
+
+//QUESTÃO B.
+
+void imprime (Ingresso * i){//função que imprime os dados.
+  printf("Preco: %2.f\n Local: %s\n Atracao: %s\n", i->preco, i->local, i->atracao);
+}//imprime na tela o preço, local e atração digitados pelo usuário.
+
+//QUESTÃO C.
+
+void altera_preco (Ingresso * i, float valor){//função que açtera o preço do ingresso.
+i->preco = valor;//"i->preco" recebe um novo valor, informado na função int main.  
+}
+
+//QUESTÃO D.
+
+void imprime_menor_maior_preco(int n, Ingresso * vet){//função que imprime maior e menor preço.
+int i;//declara um a variavel "i" do tio int.
+int maior=0;//declara uma variavel chamada "maior" do tipo int com o valor de 0.
+int menor=0;//declara uma variavel chamada "menor" do tipo int com o valor de 0.
+ 
+for (i = 0; i < n; i++){//laço de repetição.
+  if (vet[i].preco > maior){//verifica se o valor digitado é maior que o armazenado em "maior".
+  maior = vet[i].preco;//caso sim, a variavel maior recebe o novo valor.
+  }
+  if (vet[i].preco < menor){//verifica se o valor digitado é menor que o armazenado em "menor".
+    menor = vet[i].preco;//caso sim, a variavel menor recebe o novo valor.
+  }
+  printf("O maior preco e: %d\n O menor preco e: %d", maior, menor);//imprime o maior e o menor preço.
+  }
+}
+
+//QUESTÃO E.
+
+int main(void){//função principal.
+  Ingresso *a;//declaraçao de um vetor do tipo ingresso chamado "a".
+  int n, v;//declaraçção de 2 variaveis do tipo int.
+  
+  a=(Ingresso*)malloc(sizeof(Ingresso));//alocação dinamica do vetor "a" do tipo "Ingresso".
+  
+  preenche (a);//chamada da função preenche.
+  altera_preco (a, 30);//chamada da função altera preço, nesse caso altera o preço para o valor 30.
+  imprime(a);//chamada da função imprime.
+  imprime_menor_maior_preco(n, a);//chamada da função que imprime o maior e o menor preço.
+  free(a);//libera o vetor.
+  return 0;
+}
+
+QUESTÃO 2.
+
+#include <stdio.h> //inclusão de biblioteca.
+#include<stdlib.h> //inclusão de biblioteca.
+
+typedef struct aluno{//estrutura de nome "struct aluno".
+int matricula;//variavel matricula do tipo int.
+char nome [80];//variavel nome do tipo caracter com 80 caracters.
+char turma;//variavel turma do tipo char.
+float notas [3];//variaveis n1, n2n e n3 do tipo float.
+float media;//variavel média do tipo float.
+}Aluno;//renomeia a estrutura para "Aluno" com o comando typedef.
+
+void inicializa(Aluno **alunos, int n){//função que inicializa.
+	int i;//declaração de variavel chamada "i" do tipo int.
+	for(i=0; i<n; i++)//laço de repetição.
+		alunos[i] = NULL;//alunos no indice "i" recebe NULL(algo sem valor).
+}
+
+//QUESTÃO A
+
+ void matricula(int n,Aluno** alunos){//funçao que recebe os dados.
+  int i = 0;//variavel "i" do tipo inteiro recebe o valor de 0.
+    if(i < n){
+     alunos[i] = (Aluno*) malloc(n*sizeof(Aluno));//declaração dinamica de um vetor para alunos.
+     if(alunos[i]==NULL){//verifica se há espaço na memória.
+     printf("Não existe espaço na memória \n");//caso não tenha, imprimira isso.
+     exit(1);//finaliza o programa.
+ } 
+  else{
+      printf("Digite a matricula:\n Digite a turma:\n Digite o nome:\n");//Pede ao usuário que digite a matricula, turma e nome.
+      scanf("%d", &alunos[i]->matricula);//armazena aqui a matricula.
+      scanf("%s", &alunos[i]->turma);//armazena aqui a turma.
+      scanf("%s", alunos[i]->nome);//armazena aqui o nome.
+      alunos[i]->notas[0]=0;//atribuição do valor 0 ao vetor 0.
+      alunos[i]->notas[1]=0;//atribuição do valor 0 ao vetor 1.
+      alunos[i]->notas[2]=0;//atribuição do valor 0 ao vetor 2.
+      alunos[i]->media=0;//atribuição do valor 0 a média.
+      i++;//incrementando "i".
+     }
+ }
+   else{
+      printf("Sem vagas");//caso não tenha vagas, imprime isso.
+     }
+}
+
+//QUESTÃO B
+
+void lanca_notas(int n, Aluno** alunos){//função que lança as notas e calcula a média.
+  int i;//variavel "i" do tipo int.
+  for (i = 0; i < n; i++){//laço de repetição.
+    if (alunos[i]!=NULL){//aqui diz que alunos[i] está vazio.
+      printf("Aluno %d\n", i+1);//imprime na tela "Aluno 1".
+      printf("Digite a %dª nota: ", i+1);//pede ao usuário a primeira nota.
+      scanf("%f", &alunos[i]->notas[0]);//armazena a primeira nota.
+      printf("Digite a %dª nota: ", i+2);//pede ao usuário a segundaa nota.
+      scanf("%f", &alunos[i]->notas[1]);//armazena a segunda nota.
+      printf("Digite a %dª nota: ", i+3);//pede ao usuário a terceira nota.
+      scanf("%f", &alunos[i]->notas[2]);//armazena a terceira nota.
+      alunos[i]->media = (alunos[i]->notas[0] + alunos[i]->notas[1] + alunos[i]->notas[2])/3;//calcula a média.
+      printf("A Media: %.2f \n", alunos[i]->media);//imprime a média.
+    }
+  }
+}
+
+//QUESTÃO C
+
+void imprime_tudo(int n, Aluno** alunos){//função que imprime os dados de todos os alunos da disciplina.
+int i;//declaração de variavel "i" do tipo int.
+  for(i = 0; i < n; i++){//laço de repetição.
+    if(alunos[i]!=NULL){//como alunos[i] é vazio, logo ele faz os próximos passos.
+      printf("\nMatricula: %d\n", alunos[i]->matricula);//imprime a matricula
+      printf("Nome: %s\n", alunos[i]->nome);//imprime o nome.
+      printf("Turma: %c\n", alunos[i]->turma);//imprime a turma.
+      printf("Media: %2.f\n", alunos[i]->media);//imprime a média.
+    } 
+  }
+}
+
+//QUESTÃO D
+
+void imprime_turma(int n, Aluno** alunos, char turma){//função que imprime os dados de todos os alunos da turma.
+int i;//declaração de variavel "i" do tipo int.
+  for(i = 0;i < n; i++){//laço de repetição.
+    if(alunos[i]!=NULL && alunos[i]->turma==turma){//verifica se alunos[i] ´vazio e se o mesmo é igual a turma.
+        printf("\n Matricula:  %d \n", alunos[i]->matricula );//imprime a matricula.
+        printf("Nome: %s \n", alunos[i]->nome);//imprime o nome.
+        printf("Turma: %c \n", alunos[i]->turma);//imprime a turma.  
+    }
+  }
+}
+
+//QUESTÃO E
+
+void imprime_turma_aprovados(int n, Aluno**alunos, char turma){//imprime os aprovados da turma.
+  int i;//declaração de variavel "i" do tipo int.
+  for(i = 0; i < n; i++){
+    if(alunos[i]!=NULL && alunos[i]->turma==turma){///verifica se alunos[i] ´vazio e se o mesmo é igual a turma.
+      if(alunos[i]->media>=7){//laço de repetição.
+        printf("Matricula: %d\n", alunos[i]->matricula);//imprime a matricula.
+        printf("Nome: %s\n", alunos[i]->nome);//imprime o nome
+        printf("Media: %2.f\n, ALUNO APROVADO", alunos[i]->media);//imprime a média e se o aluno foi aprovado.
+      } 
+    }
+  }
+}
+
+int main(void){//função principal
+    Aluno *aluno[3]; //declaração de um vetor de ponteiros de estrutura.
+    inicializa(aluno,3);//chamada da função inicializa.
+    matricula(3,aluno);//chamada da função matricula.
+    lanca_notas(3, aluno);//chamada da função lanca_notas.
+    imprime_tudo(3,aluno);//chamada da função imprime_tudo.
+    imprime_turma(3, aluno, 'a');//chamada da função imprime_turma.
+    imprime_turma_aprovados(3,aluno, 'A');//chamada da função imprime_turma_aprovados.
+
+return 0;//finaliza o programa.
+}
+
+QUESTÃO 3
+
+#include <stdio.h>//incluindo biblioteca.
+#include <stdlib.h>//incluindo biblioteca.
+#include <math.h>//incluindo biblioteca.
+
+typedef struct retangulo{//estrutura do retangulo.
+  float base;//variavel base do tipo float.
+  float altura;//variavel altura do tipo float.
+} Ret;//renomeando estrutura para "Ret".
+
+typedef struct circulo{//estrutura do circulo.
+    float raio;//variavel raio do tipo float.
+}Circ;//renomeando estrutura para "Circ".
+
+/*Dado um círculo, crie e retorne o maior retângulo circunscrito de altura h. Considere que h é menor do
+que o diâmetro do círculo.*/
+
+Ret * ret_circunscrito(Circ *c, float h){
+  Ret *r= malloc(sizeof(Ret));
+  r->base = 2 * sqrt(pow(c->raio, 2) - pow(h, 2));
+  r->altura = h;
+  return r;
+}
+
+/*Dado um retângulo, crie e retorne o maior círculo interno ao retângulo*/
+
+Circ * circ_interno(Ret *r){
+  Circ *c = malloc(sizeof(Circ));
+  c->raio = sqrt(pow(r->base, 2) + pow(r->altura, 2)) / 2;
+  return c;
+}
+
+int main(void){//função principal.
+   Circ *c = malloc(sizeof(Circ));//declaração de um vetor dinamico do tipo circ de nome "c".
+   c->raio = 5;//raio recebe o valor de 5.
+   Ret *r = ret_circunscrito(c, 3);
+   printf("Base: %f ", r->base);//imprime a base.
+   printf("Altura: %f ", r->altura);//imprime a altura.
+   free(c);//libera o vetor c.
+   free(r);//libera o vetor r.
+   return 0;//finaliza o programa.
+}
